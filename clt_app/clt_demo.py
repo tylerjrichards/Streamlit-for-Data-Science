@@ -1,18 +1,13 @@
 import streamlit as st 
 import numpy as np 
 import matplotlib.pyplot as plt
-
-percent_heads = st.number_input('Enter a number between 0 and 1')
-binom_dist = np.random.binomial(1, percent_heads, 1000)
+perc_heads = st.number_input(label = 'Chance of Coins Landing on Heads', min_value = 0.0, max_value = 1.0, value = .5)
+binom_dist = np.random.binomial(1, perc_heads, 1000)
 
 list_of_means = []
 for i in range(0, 1000):
 	list_of_means.append(np.random.choice(binom_dist, 100, replace=True).mean())
 
-
-#fig, ax = plt.subplots()
-#ax = plt.hist(list_of_means)
-plt.hist(list_of_means)
-st.pyplot()
-plt.hist([1,1,1,1])
-st.pyplot()
+fig, ax = plt.subplots()
+ax = plt.hist(list_of_means)
+st.pyplot(fig)
