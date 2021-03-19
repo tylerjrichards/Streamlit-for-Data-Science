@@ -1,7 +1,19 @@
 import streamlit as st 
+from streamlit_lottie import st_lottie
+import requests
 import pandas as pd 
 import matplotlib.pyplot as plt 
 import seaborn as sns 
+
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+lottie_penguin = load_lottieurl('https://assets9.lottiefiles.com/private_files/lf30_lntyk83o.json')
+st_lottie('')
+st_lottie(lottie_penguin, speed=1, height=200, key="initial")
  
 st.title("Palmer's Penguins") 
 st.markdown('Use this Streamlit app to make your own scatterplot about penguins!') 
@@ -14,8 +26,8 @@ selected_y_var = st.selectbox('What about the y?',
 penguin_file = st.file_uploader('Select Your Local Penguins CSV') 
 if penguin_file is not None: 
 	penguins_df = pd.read_csv(penguin_file) 
-else: 
-	st.stop()
+else:
+	penguins_df = pd.read_csv('penguins.csv')
 
 sns.set_style('darkgrid')
 markers = {"Adelie": "X", "Gentoo": "s", "Chinstrap":'o'}
