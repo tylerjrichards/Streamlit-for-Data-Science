@@ -12,7 +12,7 @@ def load_lottieurl(url: str):
     return r.json()
 
 lottie_penguin = load_lottieurl('https://assets9.lottiefiles.com/private_files/lf30_lntyk83o.json')
-st_lottie(lottie_penguin, speed=1, height=200, key="initial")
+st_lottie(lottie_penguin, speed=1.5, width = 800, height = 400)
  
 st.title("Palmer's Penguins") 
 st.markdown('Use this Streamlit app to make your own scatterplot about penguins!') 
