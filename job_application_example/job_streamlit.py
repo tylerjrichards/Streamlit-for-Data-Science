@@ -3,6 +3,11 @@ from streamlit_lottie import st_lottie
 import pandas as pd
 import requests
 
+password_attempt = st.text_input('Please Enter The Password')
+if password_attempt != 'example_password':
+	st.write('Incorrect Password!')
+	st.stop()
+
 def load_lottieurl(url: str):
     r = requests.get(url)
     if r.status_code != 200:
@@ -28,11 +33,11 @@ the input airport.' There are three steps here:
 4. Return sorted list of airports Distance
 '''
 
-#load necessary data
-airport_distance_df = pd.read_csv('ex1_table.csv')
+airport_distance_df = pd.read_csv('airport_location.csv')
 
 with st.echo():
-	airport_distance_df = pd.read_csv('ex1_table.csv')
+	#load necessary data
+	airport_distance_df = pd.read_csv('airport_location.csv')
 
 '''
 From some quick googling, I found that the haversine distance is 
@@ -90,5 +95,88 @@ lat2 = st.number_input('Latitude 2', value = -43.48)
 
 test_distance = haversine_distance(long1 = long1, long2 = long2,
 		lat1 = lat1, lat2 = lat2, degrees=True)
-st.write('Your distance is: {} kilometers'.format(test_distance))
+st.write('Your distance is: {} kilometers'.format(int(test_distance)))
 
+'''
+We have the Haversine distance implemented, and we also have
+proven to ourselves that it works reasonably well.
+Our next step is to implement this in a function!
+'''
+
+def get_distance_list(airport_dataframe, airport_code):
+    df = airport_dataframe.copy() 
+    row = df[df.loc[:,'Airport Code'] == airport_code] 
+    lat = row['Lat'] 
+    long = row['Long'] 
+    df = df[df['Airport Code'] != airport_code] 
+    df['Distance'] = df.apply(lambda x: haversine_distance(lat1=lat, long1=long, 
+    	lat2 = x.Lat, long2 = x.Long, degrees=True), axis=1)
+    return(df.sort_values(by='Distance').reset_index()['Airport Code']) 
+
+with st.echo():
+	def get_distance_list(airport_dataframe, airport_code):
+	    df = airport_dataframe.copy() #creates a copy of our dataframe for our function to use
+	    row = df[df.loc[:,'Airport Code'] == airport_code] #selects the row from our airport code input
+	    lat = row['Lat'] #get latitude
+	    long = row['Long'] #get longitude
+	    df = df[df['Airport Code'] != airport_code] #filter out our airport, implement haversine distance
+	    df['Distance'] = df.apply(lambda x: haversine_distance(lat1=lat, long1=long, 
+	    	lat2 = x.Lat, long2 = x.Long, degrees=True), axis=1)
+	    return(df.sort_values(by='Distance').reset_index()['Airport Code']) #return values sorted
+
+'''
+To use this function, select an airport from the airports provided in the dataframe
+and this application will find the distance between each one, and 
+return a list of the airports closest to furthest.
+'''
+
+selected_airport = st.selectbox('Airport Code', airport_distance_df['Airport Code'])
+distance_airports = get_distance_list(
+	airport_dataframe=airport_distance_df, airport_code=selected_airport)
+st.write('Your closest airports in order are {}'.format(list(distance_airports)))
+
+'''
+This all seems to work just fine! There are a few ways I would improve this if I was working on 
+this for a longer period of time.  
+1. I would implement the [Vincenty Distance](https://en.wikipedia.org/wiki/Vincenty%27s_formulae) 
+instead of the Haversine distance, which is much more accurate but cumbersome to implement.  
+2. I would vectorize this function and make it more efficient overall. 
+Because this dataset is only 7 rows long, it wasn't particularly important, 
+but if this was a crucial function that was run in production we would want to vectorize it for speed. 
+'''
+
+st.subheader('Question 2: Representation')
+
+'''
+For this transformation, there are a few things 
+that I would start with. First, I would have to define 
+what a unique trip actually was. In order to do this, I would 
+group by the origin, the destination, and the departure date 
+(for the departure date, often customers will change around 
+this departure date, so we should group by the date plus or 
+minus at least 1 buffer day to capture all the correct dates).   
+Additionally, we can see that often users search from an entire city, 
+and then shrink that down into a specific airport. So we should also 
+consider a group of individual queries from cities and airpots in the 
+same city, as the same search, and do the same for destination.    
+From that point, we should add these important columns to each unique search.
+'''
+
+example_df = pd.DataFrame(columns=['userid', 'number_of_queries', 'round_trip', 'distance', 'number_unique_destinations',
+                     'number_unique_origins', 'datetime_first_searched','average_length_of_stay',
+                     'length_of_search'])
+example_row = {'userid':98593, 'number_of_queries':5, 'round_trip':1,
+                   'distance':893, 'number_unique_destinations':5,
+                     'number_unique_origins':1, 'datetime_first_searched':'2015-01-09',
+                   'average_length_of_stay':5, 'length_of_search':4}
+st.write(example_df.append(example_row, ignore_index=True))
+'''
+For answering the second part of the question, we should take the euclidian distance 
+on two normalized vectors. There are two solid options for comparing two 
+entirely numeric rows, the euclidian distance (which is just the straight line 
+difference between two values), and the manhattan distance (think of this as the 
+distance traveled if you had to use city blocks to travel diagonally across manhattan). 
+Because we have normalized data, and the data is not high dimensional or sparse, I 
+would recommend using the euclidian distance to start off. This distance would tell 
+us how similar two trips were.
+'''
