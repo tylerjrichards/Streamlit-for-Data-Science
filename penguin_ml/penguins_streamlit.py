@@ -40,14 +40,15 @@ else:
              ' it has a score of {}! Use the '
              'inputs below to try out the model.'.format(score))
 
-island = st.selectbox('Penguin Island', options=[
-                      'Biscoe', 'Dream', 'Torgerson'])
-sex = st.selectbox('Sex', options=['Female', 'Male'])
-bill_length = st.number_input('Bill Length (mm)', min_value=0)
-bill_depth = st.number_input('Bill Depth (mm)', min_value=0)
-flipper_length = st.number_input('Flipper Length (mm)', min_value=0)
-body_mass = st.number_input('Body Mass (g)', min_value=0)
-
+with st.form('user_inputs'):
+    island = st.selectbox('Penguin Island', options=[
+                          'Biscoe', 'Dream', 'Torgerson'])
+    sex = st.selectbox('Sex', options=['Female', 'Male'])
+    bill_length = st.number_input('Bill Length (mm)', min_value=0)
+    bill_depth = st.number_input('Bill Depth (mm)', min_value=0)
+    flipper_length = st.number_input('Flipper Length (mm)', min_value=0)
+    body_mass = st.number_input('Body Mass (g)', min_value=0)
+    st.form_submit_button()
 island_biscoe, island_dream, island_torgerson = 0, 0, 0
 if island == 'Biscoe':
     island_biscoe = 1
