@@ -1,4 +1,4 @@
 ### Welcome to Chapter 1: An Introduction to Streamlit
 
-This folder contains the initial plotting app as our first example of how to run a Streamlit app, and uses the libraries held in the requirements.txt file within this folder. Download these libraries by running 'pip install -r requirements.txt'. 
+This folder contains the initial plotting app as our first example of how to run a Streamlit app, and uses some of the libraries held in the requirements.txt file within the central book's folder. Download these libraries before getting started here!  
 If you think there is a problem with this code, please [open an issue or pull request](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/working-with-your-remote-repository-on-github-or-github-enterprise/creating-an-issue-or-pull-request) or just find me on [Twitter](https://www.twitter.com/tylerjrichards) and DM me! 
