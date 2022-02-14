@@ -8,3 +8,4 @@ The first chapter starts in the folder 'clt_app', head over there with the book 
 Streamlit is an ever-changing library, and by the time this book was written it was already slightly behind compared to newer versions of the library. If you notice error messages, please message me about them so I can get them all fixed or note them below!  
 1. st.beta_columns is out of beta!
 As of now, st.beta_columns is now called simply st.columns! Excited to see this one out of beta, and depending on your Streamlit version you will get an error if you use st.beta_columns
+2. There is an open bug caused when you redirect the output of 'streamlit config show' to the config.toml file for your project, I would instead copy and paste this manually! See (this post)[https://discuss.streamlit.io/t/cant-run-streamlit-if-i-create-config-toml/22004/5] to stay updated
