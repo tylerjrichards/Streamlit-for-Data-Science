@@ -27,5 +27,5 @@ for i in range(0, 1000):
 
 fig, ax = plt.subplots() 
 ax = plt.hist(list_of_means) 
->>>>>>> e5cc9d77a97768c6d6417a47552d395e1ada7dea
+
 st.pyplot(fig) 
