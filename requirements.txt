@@ -6,7 +6,7 @@ matplotlib>=3.2.2
 seaborn>=0.11.0
 scikit_learn>=0.24.1
 plotly>=5.0.0
-bokeh>=2.2.2
+bokeh>=2.2.2,<=2.4.1
 altair>=4.1.0
 pydeck>=0.6.2
 pandas_profiling
