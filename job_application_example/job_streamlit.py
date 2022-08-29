@@ -157,7 +157,7 @@ this departure date, so we should group by the date plus or
 minus at least 1 buffer day to capture all the correct dates).   
 Additionally, we can see that often users search from an entire city, 
 and then shrink that down into a specific airport. So we should also 
-consider a group of individual queries from cities and airpots in the 
+consider a group of individual queries from cities and airports in the 
 same city, as the same search, and do the same for destination.    
 From that point, we should add these important columns to each unique search.
 '''
