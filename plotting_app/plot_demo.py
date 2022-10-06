@@ -1,6 +1,7 @@
-import streamlit as st 
 import time
+
 import numpy as np
+import streamlit as st
 
 progress_bar = st.sidebar.progress(0)
 status_text = st.sidebar.empty()
