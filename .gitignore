@@ -2,3 +2,5 @@
 .envrc
 .direnv/*
 .mypy_cache/*
+*.toml
+trees_app/.streamlit/config.toml

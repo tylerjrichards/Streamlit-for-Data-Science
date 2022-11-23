@@ -162,7 +162,6 @@ serverPort = 8501
 # The value below was set in /Users/tylerjrichards/.streamlit/config.toml
 token = "pk.eyJ1IjoidHlsZXJqcmljaGFyZHMiLCJhIjoiY2p1YWRvYmlvMDFuZDN5bjV4NmJ3OWpieCJ9.jZzjCeslaeVUrhEFaQCX7Q"
 
-
 [deprecation]
 
 # Set to false to disable the deprecation warning for the file uploader encoding.
