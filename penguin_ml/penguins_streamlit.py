@@ -96,4 +96,4 @@ new_prediction = rfc.predict(
     ]
 )
 prediction_species = unique_penguin_mapping[new_prediction][0]
-st.write("We predict your penguin is of the {} species".format(prediction_species))
+st.write(f"We predict your penguin is of the {prediction_species} species")
