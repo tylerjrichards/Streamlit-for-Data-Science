@@ -1,5 +1,5 @@
 ### Under Construction
-I am currently editing the second version of this book, if you're looking for the older version check it out at [this repo](https://github.com/tylerjrichards/Getting-Started-with-Streamlit-for-Data-Science).
+I am currently editing the second version of this book, if you're looking for the older version check it out at [this repo](https://github.com/tylerjrichards/Getting-Started-with-Streamlit-for-Data-Science). Stick around here if you want to follow along as I edit!
 
 ### Streamlit for Data Science
 Welcome to [Streamlit for Data Science!](https://www.amazon.com/gp/product/180056550X) I'm the author, [Tyler Richards](www.tylerjrichards.com), and I wrote this book when I was at Facebook, and have since moved to work for Streamlit.
