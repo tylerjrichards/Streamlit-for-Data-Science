@@ -1,6 +1,8 @@
 import pickle
 
+import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 import streamlit as st
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
@@ -95,5 +97,38 @@ new_prediction = rfc.predict(
         ]
     ]
 )
+st.subheader("Predicting Your Penguin's Species:")
 prediction_species = unique_penguin_mapping[new_prediction][0]
 st.write(f"We predict your penguin is of the {prediction_species} species")
+st.write(
+    """We used a machine learning
+    (Random Forest) model to predict the
+    species, the features used in this
+    prediction are ranked by relative
+    importance below."""
+)
+st.image("feature_importance.png")
+
+st.write(
+    """Below are the histograms for each
+continuous variable separated by penguin species.
+The vertical line represents the inputted value."""
+)
+
+fig, ax = plt.subplots()
+ax = sns.displot(x=penguin_df["bill_length_mm"], hue=penguin_df["species"])
+plt.axvline(bill_length)
+plt.title("Bill Length by Species")
+st.pyplot(ax)
+
+fig, ax = plt.subplots()
+ax = sns.displot(x=penguin_df["bill_depth_mm"], hue=penguin_df["species"])
+plt.axvline(bill_depth)
+plt.title("Bill Depth by Species")
+st.pyplot(ax)
+
+fig, ax = plt.subplots()
+ax = sns.displot(x=penguin_df["flipper_length_mm"], hue=penguin_df["species"])
+plt.axvline(flipper_length)
+plt.title("Flipper Length by Species")
+st.pyplot(ax)
