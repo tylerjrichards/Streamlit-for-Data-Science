@@ -9,8 +9,3 @@ The first chapter starts in the folder 'clt_app', head over there with the book 
 
 #### Book Edits
 Streamlit is an ever-changing library, and by the time this book was written it was already slightly behind compared to newer versions of the library. If you notice error messages, please message me about them so I can get them all fixed or note them below!
-
-
-
-### Version 2
-I am in the middle of creating a second version of this book in order to have it catch up with the many changes by the Streamlit team! I'll be making changes to the repo in the forms of PRs. If you have an older copy of the book, when it is released i'm happy to send you a newer version of the book so you don't have to buy two copies.
