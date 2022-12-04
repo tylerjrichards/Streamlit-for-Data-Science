@@ -4,3 +4,4 @@
 .mypy_cache/*
 *.toml
 trees_app/.streamlit/config.toml
+.DS_Store
