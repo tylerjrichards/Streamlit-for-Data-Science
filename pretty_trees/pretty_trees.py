@@ -1,86 +1,58 @@
-import streamlit as st 
+import datetime as dt
 
-import pandas as pd 
+import pandas as pd
+import plotly.express as px
+import streamlit as st
 
-import seaborn as sns 
+st.set_page_config(layout="wide")
 
-import datetime as dt 
+st.title("SF Trees")
+st.write(
+    """
+    This app analyses trees in San Francisco using
+    a dataset kindly provided by SF DPW. The dataset
+    is filtered by the owner of the tree as selected
+    in the sidebar!
+    """
+)
+trees_df = pd.read_csv("trees.csv")
+today = pd.to_datetime("today")
+trees_df["date"] = pd.to_datetime(trees_df["date"])
+trees_df["age"] = (today - trees_df["date"]).dt.days
+unique_caretakers = trees_df["caretaker"].unique()
+owners = st.sidebar.multiselect("Tree Owner Filter", unique_caretakers)
+graph_color = st.sidebar.color_picker("Graph Colors")
+if owners:
+    trees_df = trees_df[trees_df["caretaker"].isin(owners)]
 
-import matplotlib.pyplot as plt 
 
- 
+col1, col2 = st.columns(2)
+with col1:
+    fig = px.histogram(
+        trees_df,
+        x=trees_df["dbh"],
+        title="Tree Width",
+        color_discrete_sequence=[graph_color],
+    )
+    fig.update_xaxes(title_text="Width")
+    st.plotly_chart(fig, use_container_width=True)
 
-st.title('SF Trees') 
+with col2:
+    fig = px.histogram(
+        trees_df,
+        x=trees_df["age"],
+        title="Tree Age",
+        color_discrete_sequence=[graph_color],
+    )
+    st.plotly_chart(fig, use_container_width=True)
 
-st.write('This app analyses trees in San Francisco using' 
+st.write("Trees by Location")
+trees_df = trees_df.dropna(subset=["longitude", "latitude"])
+trees_df = trees_df.sample(n=1000, replace=True)
+st.map(trees_df)
 
-         ' a dataset kindly provided by SF DPW. The ' 
+st.stop()
 
-         'histogram below is filtered by tree owner.') 
 
- 
-
-#load trees dataset, add age column in days 
-
-trees_df = pd.read_csv('trees.csv') 
-
-trees_df['age'] = (pd.to_datetime('today') - 
-
-                   pd.to_datetime(trees_df['date'])).dt.days 
-
-#add tree owner filter to sidebar, then filter, get color  
-
-owners = st.sidebar.multiselect('Tree Owner Filter', trees_df['caretaker'].unique()) 
-
-graph_color = st.sidebar.color_picker('Graph Colors') 
-
-if owners: 
-    trees_df = trees_df[trees_df['caretaker'].isin(owners)]  
-
- 
-
-#group by dbh for leftmost graph 
-
-df_dbh_grouped = pd.DataFrame(trees_df.groupby(['dbh']).count()['tree_id']) 
-
-df_dbh_grouped.columns = ['tree_count'] 
-
-col1, col2 = st.beta_columns(2) 
-
-with col1: 
-
-    st.write('Trees by Width') 
-
-    fig_1, ax_1 = plt.subplots() 
-
-    ax_1 = sns.histplot(trees_df['dbh'],  
-
-    color=graph_color) 
-
-    plt.xlabel('Tree Width') 
-
-    st.pyplot(fig_1) 
-
-with col2: 
-
-    st.write('Trees by Age') 
-
-    fig_2, ax_2 = plt.subplots() 
-
-    ax_2 = sns.histplot(trees_df['age'], 
-
-    color=graph_color) 
-
-    plt.xlabel('Age (Days)') 
-
-    st.pyplot(fig_2) 
-
- 
-
-st.write('Trees by Location') 
-
-trees_df = trees_df.dropna(subset=['longitude', 'latitude']) 
-
-trees_df = trees_df.sample(n = 1000, replace=True) 
-
-st.map(trees_df) 
+df_dbh_grouped = pd.DataFrame(trees_df.groupby(["dbh"]).count()["tree_id"])
+df_dbh_grouped.columns = ["tree_count"]
