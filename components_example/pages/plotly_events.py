@@ -6,6 +6,7 @@ from streamlit_plotly_events import plotly_events
 st.title("Streamlit Plotly Events Example: Penguins")
 df = pd.read_csv("penguins.csv")
 
+
 fig = px.scatter(df, x="bill_length_mm", y="bill_depth_mm", color="species")
 selected_point = plotly_events(fig, click_event=True)
 if len(selected_point) == 0:
