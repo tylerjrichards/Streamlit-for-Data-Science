@@ -14,3 +14,5 @@ pydeck>=0.8.0
 pandas_profiling
 streamlit_pandas_profiling
 streamlit_embedcode
+streamlit-aggrid
+streamlit-folium
