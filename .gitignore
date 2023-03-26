@@ -1,8 +1,10 @@
 *.DS_Store
 .envrc
+.direnv
 .direnv/*
 .mypy_cache/*
 *.toml
 trees_app/.streamlit/config.toml
 .DS_Store
 *.mypy_cache/*
+*.mypy_cache
