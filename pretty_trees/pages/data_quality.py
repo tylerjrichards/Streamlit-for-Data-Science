@@ -16,5 +16,5 @@ edited_df = st.experimental_data_editor(trees_df_filtered)
 trees_df.loc[edited_df.index] = edited_df
 
 if st.button("Save data and overwrite:"):
-    trees_df.to_csv("trees2.csv", index=False)
+    trees_df.to_csv("trees.csv", index=False)
     st.write("Saved!")
