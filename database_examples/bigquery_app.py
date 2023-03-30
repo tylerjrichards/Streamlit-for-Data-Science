@@ -2,17 +2,6 @@ import streamlit as st
 from google.cloud import bigquery
 from google.oauth2 import service_account
 
-st.set_page_config(
-     page_title="example app",
-     page_icon=":knife_fork_plate:",
-     layout="centered",
-     initial_sidebar_state="auto",
-     menu_items={
-         'Get Help': 'https://developers.snowflake.com',
-         'About': "This is an *extremely* cool app powered by Snowpark for Python & Streamlit"
-     }
- )
-
 
 @st.cache_resource
 def get_bigquery_client():
