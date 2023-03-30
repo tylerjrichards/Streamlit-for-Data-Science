@@ -16,3 +16,5 @@ streamlit_pandas_profiling
 streamlit_embedcode
 streamlit-aggrid
 streamlit-folium
+google-cloud-bigquery
+db-dtypes
