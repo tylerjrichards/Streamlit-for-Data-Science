@@ -1,6 +1,7 @@
 import streamlit as st
 from google.cloud import bigquery
 from google.oauth2 import service_account
+from queries import get_streamlit_pypi_data
 
 
 @st.cache_resource
@@ -19,17 +20,8 @@ def get_dataframe_from_sql(query):
 
 
 st.title("BigQuery App")
-my_first_query = """
-    SELECT
-    CAST(file_downloads.timestamp  AS DATE) AS file_downloads_timestamp_date,
-    file_downloads.file.project AS file_downloads_file__project,
-    COUNT(*) AS file_downloads_count
-    FROM `bigquery-public-data.pypi.file_downloads`
-    AS file_downloads
-    WHERE (file_downloads.file.project = 'streamlit')
-        AND (file_downloads.timestamp >= timestamp_add(current_timestamp(), INTERVAL -(5) DAY))
-    GROUP BY 1,2
-    """
+days_lookback = st.slider('How many days of data do you want to see?', min_value=1, max_value=30, value=5)
+pypi_query = get_streamlit_pypi_data(days_lookback)
 
-downloads_df = get_dataframe_from_sql(my_first_query)
+downloads_df = get_dataframe_from_sql(pypi_query)
 st.line_chart(downloads_df, x="file_downloads_timestamp_date", y="file_downloads_count")
