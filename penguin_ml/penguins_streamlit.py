@@ -13,10 +13,9 @@ st.title("Penguin Classifier")
 st.write(
     """This app uses 6 inputs to predict
      the species of penguin using a model
-     built on the Palmer's Penguin's dataset.
+     built on the Palmer's Penguins dataset.
      Use the form below to get started!"""
 )
-
 
 password_guess = st.text_input("What is the Password?")
 if password_guess != "streamlit_is_great":
@@ -32,6 +31,7 @@ if penguin_file is None:
     unique_penguin_mapping = pickle.load(map_pickle)
     rf_pickle.close()
     map_pickle.close()
+    penguin_df = pd.read_csv("penguins.csv")
 else:
     penguin_df = pd.read_csv(penguin_file)
     penguin_df = penguin_df.dropna()
