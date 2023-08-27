@@ -18,3 +18,4 @@ streamlit-aggrid
 streamlit-folium
 google-cloud-bigquery
 db-dtypes
+openai
