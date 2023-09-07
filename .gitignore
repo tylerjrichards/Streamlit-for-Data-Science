@@ -8,3 +8,4 @@ trees_app/.streamlit/config.toml
 .DS_Store
 *.mypy_cache/*
 *.mypy_cache
+*__pycache__*
