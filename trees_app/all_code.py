@@ -123,7 +123,7 @@ st.write(
     "This app analyses trees in San Francisco using"
     " a dataset kindly provided by SF DPW"
 )
-st.subheader("Plotly Chart")
+st.subheader("Bokeh Chart")
 trees_df = pd.read_csv("trees.csv")
 
 scatterplot = figure(title="Bokeh Scatterplot")
@@ -138,7 +138,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-st.title("SF Trees")
+st.title("SF Trees: Altair")
 st.write(
     "This app analyses trees in San Francisco using"
     " a dataset kindly provided by SF DPW"
@@ -155,7 +155,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-st.title("SF Trees")
+st.title("SF Trees: Altair")
 st.write(
     "This app analyses trees in San Francisco using"
     " a dataset kindly provided by SF DPW"
@@ -170,7 +170,7 @@ import pandas as pd
 import pydeck as pdk
 import streamlit as st
 
-st.title("SF Trees")
+st.title("SF Trees: PyDeck")
 st.write(
     "This app analyses trees in San Francisco using"
     " a dataset kindly provided by SF DPW"
