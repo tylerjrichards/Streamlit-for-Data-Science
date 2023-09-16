@@ -3,7 +3,7 @@ torch>=1.13.0
 transformers>=4.24.0
 numpy>=1.23.5
 streamlit_lottie
-pandas>=1.4.0
+pandas==1.5.1
 matplotlib>=3.6.2
 seaborn>=0.12.0
 scikit_learn>=1.1.0
