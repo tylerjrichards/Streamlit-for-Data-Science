@@ -6,3 +6,16 @@ The first chapter starts in the folder 'clt_app', head over there with the book 
 
 #### Book Edits
 Streamlit is an ever-changing library, and by the time this book was written it was already slightly behind compared to newer versions of the library. If you notice error messages, please message me about them so I can get them all fixed or note them below!
+
+## To run the app on Streamlit Cloud, simply click the button below:
+
+| Directories | Python files | Streamlit | 
+| :-------- | :-------- | :-------: | 
+| | | |
+| **clt_app** | <ul><li>clt_demo.py</li></ul> | [![Deploy in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://cltdemopy-lmnajsyhzycrgaygdkgwpa.streamlit.app/) |
+|| <ul><li>example.py</li></ul> | [![Deploy in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://examplepy-ulytpimndkhf8ftc4qdp2s.streamlit.app/) |
+|| <ul><li>hello_world.py</li></ul> | [![Deploy in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://helloworldpy-mkhpqlqbxl7xy8qso6npyy.streamlit.app/) |
+| **penguin_app** | <ul><li>penguins.py</li></ul> | [![Deploy in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://penguinspy-cpuuxks7dq6fh5n6d7nuj5.streamlit.app/) |
+|| <ul><li>session_state_examples.py</li></ul> | [![Deploy in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://sessionstateexamplespy-gzjrtz2pxdrpdcappf8siapp.streamlit.app/) |
+| **random_survey_app** | <ul><li>app.py</li></ul> | [![Deploy in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://mygcmtvwsqic63flsvqlqb.streamlit.app/) |
+
